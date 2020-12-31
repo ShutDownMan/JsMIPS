@@ -8,7 +8,7 @@
     "start": "harp server --port $PORT"
   },
   "dependencies": {
-    "harp": "*"
+    "harp": "^0.33.0"
   },
   "author": "",
   "license": "ISC"
