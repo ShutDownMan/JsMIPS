@@ -51,7 +51,7 @@ function lightupSequence(component, value, bus_label = '*', seq_order = '*', def
 
     foundElems.forEach(function (elem) {
         let color = (parseInt(getBusHexValue(elem, value)) === 0) ? default_color : highlight_color;
-
+        
         if (elem.type == "path") {
             if (elem.attr('data-type') == 'end') {
                 elem.attr({ "fill": color });
