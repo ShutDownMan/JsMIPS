@@ -4,7 +4,11 @@
   "description": "",
   "main": "mips.js",
   "scripts": {
-    "test": "http-server && exit 1"
+    "test": "http-server && exit 1",
+    "start": "harp server --port $PORT"
+  },
+  "dependencies": {
+    "harp": "*"
   },
   "author": "",
   "license": "ISC"
