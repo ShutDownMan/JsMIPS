@@ -62,7 +62,7 @@ class ALU {
                 break;
         }
 
-        this.zeroBus.setValue(res === 0);
+        this.zeroBus.setValue((res === 0) ? 0 : 1);
 
         this.outBus.setValue(res);
     }

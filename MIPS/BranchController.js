@@ -6,7 +6,7 @@ class BranchController {
         this.branchSignalBus = undefined;
         this.zeroSignalBus = undefined;
 
-        this.outBus = new Bus(component, 'out');
+        this.outBus = new Bus(component, 'branchen');
     }
 
     initialize(branchSignalBus, zeroSignalBus, branchSignalBusMask) {
@@ -16,7 +16,7 @@ class BranchController {
     }
 
     draw() {
-        this.outBus.draw('#ffffff', '#00ff00');
+        this.outBus.draw('#95ffffff', '#0084ffff');
     }
 
     getOutBus() {

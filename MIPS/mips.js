@@ -95,13 +95,13 @@ class MIPS {
         this.aluController.initialize(this.instructionMemory.getInstructionBus(),
             this.controller.getAluOpSignal(), 0x0000002F, 0x00000003);
 
-        console.log("Initializing Component: Branch Source Multiplexer");
+        console.log("Initializing Component: Branch Jump Source Multiplexer");
         this.branchSrcMux.initialize(this.signExtend.getOutBus(),
             this.registers.getReadData1Bus(),
             this.aluController.getBranchJumpSrcBus());
 
         console.log("Initializing Component: Shift Left 2");
-        this.shiftLeft2.initialize(this.signExtend.getOutBus());
+        this.shiftLeft2.initialize(this.branchSrcMux.getOutBus());
 
         console.log("Initializing Component: Adder 2");
         this.adder_2.initialize(this.shiftLeft2.getOutBus(),
@@ -250,6 +250,10 @@ class MIPS {
         this.shiftLeft2.draw();
         // this.shiftLeft2.printContents();
 
+        console.log("Updating Component: Branch Jump Source Multiplexer");
+        this.branchSrcMux.passiveUpdate();
+        this.branchSrcMux.draw();
+
         console.log("Updating Component: Alu Source Multiplexer");
         this.aluSrcMux.passiveUpdate();
         this.aluSrcMux.draw();
@@ -273,7 +277,7 @@ class MIPS {
         console.log("Updating Component: Branch Controller");
         this.branchController.passiveUpdate();
         this.branchController.draw();
-        // this.branchController.printContents();
+        this.branchController.printContents();
 
         console.log("Updating Component: Branch Multiplexer");
         this.branchMux.passiveUpdate();

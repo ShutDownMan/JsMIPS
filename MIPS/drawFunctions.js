@@ -38,7 +38,7 @@ function lightupBusLabel(component, value, bus_label = '*', default_color = '#00
     let lightupInterval = setInterval(() => {
         if (lightupSequence(component, value, bus_label, String(i++), default_color, highlight_color).length == 0)
             clearInterval(lightupInterval);
-    }, 200);
+    }, 10);
 }
 
 function lightupSequence(component, value, bus_label = '*', seq_order = '*', default_color = '#000000', highlight_color = '#ffffff') {

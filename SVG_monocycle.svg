@@ -2853,9 +2853,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="4"
-     inkscape:cx="838.79964"
-     inkscape:cy="225.22025"
+     inkscape:zoom="11.313708"
+     inkscape:cx="946.64799"
+     inkscape:cy="424.02976"
      inkscape:document-units="px"
      inkscape:current-layer="layer20"
      inkscape:document-rotation="0"
@@ -2916,15 +2916,6 @@
       <title
          id="title3496">0x0000</title>
     </rect>
-    <rect
-       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.699172;stroke-linecap:round;stroke-linejoin:bevel;stop-color:#000000"
-       id="rect1869-1"
-       width="1.7479355"
-       height="1.7479346"
-       x="174.31311"
-       y="-14.086267"
-       transform="rotate(45.942858)"
-       inkscape:label="instmem-out-#2-cross" />
     <path
        style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.54186;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#marker6790);paint-order:normal;stop-color:#000000;stop-opacity:1"
        d="m 88.949594,35.869508 c 5.37596,-1e-5 5.37596,-1e-5 5.37596,-1e-5 v 0 0"
@@ -2979,7 +2970,8 @@
        d="m 131.31576,116.7101 v 4.36984 0"
        id="path6004"
        sodipodi:nodetypes="ccc"
-       inkscape:label="instmem-out-#2" />
+       inkscape:label="instmem-out-#2"
+       data-bus_mask="0x0000FFFF" />
     <path
        style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.314628;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal;stop-color:#000000;stop-opacity:1"
        d="M 131.31576,100.54169 V 70.826798 h 16.60537 v 0"
@@ -3114,7 +3106,7 @@
        style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.54186;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#marker66952-4);paint-order:normal;stop-color:#000000;stop-opacity:1"
        d="m 233.49756,73.011702 h 3.49034"
        id="path66939"
-       inkscape:label="jumpsrcmux-out-#1" />
+       inkscape:label="branchsrcmux-out-#1" />
     <path
        style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.54186;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#marker66073-1);paint-order:normal;stop-color:#000000;stop-opacity:1"
        d="m 250.96374,73.011709 4.09674,-7e-6"
@@ -3315,7 +3307,7 @@
        d="m 237.70201,73.011703 -1.07114,0.618425 v -1.236849 z"
        inkscape:transform-center-x="-0.17852643"
        inkscape:transform-center-y="-2.6029398e-06"
-       inkscape:label="jumpsrcmux-out-#2-end" />
+       inkscape:label="branchsrcmux-out-#2-end" />
     <path
        sodipodi:type="star"
        style="font-variation-settings:normal;display:inline;opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.171763;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#marker17054);paint-order:normal;stop-color:#000000;stop-opacity:1"
@@ -3820,7 +3812,8 @@
        style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#95ffff;stroke-width:0.353957;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:url(#EmptyTriangleOutL);marker-end:url(#marker17054);paint-order:normal;stop-color:#000000;stop-opacity:1"
        d="m 244.63952,113.2142 h 8.77586 V 55.145363"
        id="path81066"
-       sodipodi:nodetypes="ccc" />
+       sodipodi:nodetypes="ccc"
+       inkscape:label="alu-zero-#1" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.16529px;line-height:1.25;font-family:'Cooper Black';-inkscape-font-specification:'Cooper Black, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;display:inline;fill:#95ffff;fill-opacity:1;stroke-width:0.174793"
@@ -4006,7 +3999,8 @@
        x="177.45348"
        y="-11.047583"
        transform="rotate(45.942858)"
-       inkscape:label="instmem-out-#3-cross" />
+       inkscape:label="instmem-out-#3-cross"
+       data-bus_mask="0x0000FFFF" />
     <rect
        style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.699172;stroke-linecap:round;stroke-linejoin:bevel;stop-color:#000000"
        id="rect1869-1-1-5"
@@ -4036,6 +4030,15 @@
        y="-105.35111"
        transform="rotate(45.942858)"
        inkscape:label="alu-out-#2-cross" />
+    <rect
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.699172;stroke-linecap:round;stroke-linejoin:bevel;stop-color:#000000"
+       id="rect1869-1"
+       width="1.7479355"
+       height="1.7479347"
+       x="174.31311"
+       y="-14.086262"
+       transform="rotate(45.942858)"
+       inkscape:label="instmem-out-#2-cross" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -4131,6 +4134,17 @@
          x="-73.02092"
          y="231.76807"
          style="text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:0.174793">MUX</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:2.11667px;line-height:1.25;font-family:'Cooper Black';-inkscape-font-specification:'Cooper Black, Normal';text-align:center;text-anchor:middle;display:inline;fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
+       x="231.33205"
+       y="69.052811"
+       id="text4322"><tspan
+         sodipodi:role="line"
+         id="tspan4320"
+         x="231.33205"
+         y="69.052811"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.705556px;font-family:'Cooper Black';-inkscape-font-specification:'Cooper Black, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0.264583">Inverted</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
