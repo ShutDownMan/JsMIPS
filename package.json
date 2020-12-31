@@ -4,8 +4,8 @@
   "description": "",
   "main": "mips.js",
   "scripts": {
-    "test": "http-server && exit 1",
-    "start": "harp server --port $PORT"
+    "test": "http-server",
+    "start": "harp server"
   },
   "dependencies": {
     "harp": "^0.33.0"
