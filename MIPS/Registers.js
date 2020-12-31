@@ -1,6 +1,6 @@
 class Registers {
 
-    constructor() {
+    constructor(component = '') {
         this.readRegister1Bus = undefined;
         this.readRegister2Bus = undefined;
         this.writeDataBus = undefined;
@@ -8,11 +8,18 @@ class Registers {
         this.writeControlBus = undefined;
         this.memory = new Array(32).fill(0);
 
-        this.readData1Bus = new Bus();
-        this.readData2Bus = new Bus();
+        this.readData1Bus = new Bus(component, 'readdata1');
+        this.readData2Bus = new Bus(component, 'readdata2');
     }
 
-    updateState() {
+    draw() {
+        this.readData1Bus.draw('#ffffff', '#00ff00');
+        this.readData2Bus.draw('#ffffff', '#00ff00');
+    }
+
+    risingEdge() { }
+
+    fallingEdge() {
         if (this.writeControlBus.getValue()) {
             this.memory[this.writeRegisterBus.getValue()] = this.writeDataBus.getValue();
         }

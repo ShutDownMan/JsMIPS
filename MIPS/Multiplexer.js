@@ -1,11 +1,15 @@
 class Multiplexer {
 
-    constructor() {
+    constructor(component = '') {
         this.inputABus = undefined;
         this.inputBBus = undefined;
         this.controlSignal = undefined;
 
-        this.outBus = new Bus();
+        this.outBus = new Bus(component, 'out');
+    }
+
+    draw() {
+        this.outBus.draw('#ffffff', '#00ff00');
     }
 
     passiveUpdate() {
@@ -29,9 +33,9 @@ class Multiplexer {
         this.inputBBusMask = inputBBusMask;
     }
 
-	initDrawFunction(drawFunc) {
-		this.draw = drawFunc;
-	}
+    initDrawFunction(drawFunc) {
+        this.draw = drawFunc;
+    }
 
     getOutBus() {
         return this.outBus;

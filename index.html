@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>MIPS in JS</title>
 </head>
+
 <body>
 
 	<div>
@@ -24,29 +26,33 @@
 
 	<br>
 
-	<div>
-		<canvas id="main_canvas", width="1920", height="1080", margin="20",
-		style="border: 3px solid black"></canvas>
+	<div class="output">
+		<svg id="main_canvas" width="1920" height="1080"></svg>
+
+		<!-- <canvas id="main_canvas" , width="1920" , height="1080" , margin="20" ,
+			style="border: 3px solid black"></canvas> -->
 	</div>
 
-	<script src="panzoom.min.js"></script>
-	<script src="Processor/drawFunctions.js"></script>
-	<script src="Processor/Bus.js"></script>
-	<script src="Processor/PCRegister.js"></script>
-	<script src="Processor/Adder.js"></script>
-	<script src="Processor/InstructionMemory.js"></script>
-	<script src="Processor/Multiplexer.js"></script>
-	<script src="Processor/SignExtend.js"></script>
-	<script src="Processor/Registers.js"></script>
-	<script src="Processor/ALUController.js"></script>
-	<script src="Processor/ShiftLeft2.js"></script>
-	<script src="Processor/ALU.js"></script>
-	<script src="Processor/BranchController.js"></script>
-	<script src="Processor/DataMemory.js"></script>
-	<script src="Processor/Controller.js"></script>
-	<script src="Processor/Processor.js"></script>
-	<script src="mips.js"></script>
+	<script src="svg-pan-zoom.min.js"></script>
+	<script src="snap.svg-min.js"></script>
+	<script src="MIPS/drawFunctions.js"></script>
+	<script src="MIPS/Bus.js"></script>
+	<script src="MIPS/PCRegister.js"></script>
+	<script src="MIPS/Adder.js"></script>
+	<script src="MIPS/InstructionMemory.js"></script>
+	<script src="MIPS/Multiplexer.js"></script>
+	<script src="MIPS/SignExtend.js"></script>
+	<script src="MIPS/Registers.js"></script>
+	<script src="MIPS/ALUController.js"></script>
+	<script src="MIPS/ShiftLeft2.js"></script>
+	<script src="MIPS/ALU.js"></script>
+	<script src="MIPS/BranchController.js"></script>
+	<script src="MIPS/DataMemory.js"></script>
+	<script src="MIPS/Controller.js"></script>
+	<script src="MIPS/mips.js"></script>
+	<script src="index.js"></script>
 
 
 </body>
+
 </html>

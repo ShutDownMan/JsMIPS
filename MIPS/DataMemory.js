@@ -1,13 +1,13 @@
 class DataMemory {
 
-    constructor() {
+    constructor(component = '') {
         this.addressBus = undefined;
         this.writeDataBus = undefined;
         this.writeMemControlBus = undefined;
         this.readMemControlBus = undefined;
         this.memory = new Array(256).fill(0);
 
-        this.readDataBus = new Bus();
+        this.readDataBus = new Bus(component, 'readdata');
     }
 
     initialize(addressBus, writeData, writeMemControlBus,
@@ -18,7 +18,13 @@ class DataMemory {
         this.readMemControlBus = readMemControlBus;
     }
 
-    updateState() {
+    draw() {
+        this.readDataBus.draw('#ffffff', '#00ff00');
+    }
+
+    risingEdge() { }
+
+    fallingEdge() {
         if (this.writeMemControlBus.getValue())
             this.memcpy([this.writeDataBus.getValue()], 0,
                 this.memory, this.addressBus.getValue(), 4);

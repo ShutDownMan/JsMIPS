@@ -7,13 +7,13 @@ const NOR = 12;
 
 class ALU {
 
-    constructor() {
+    constructor(component = '') {
         this.inputABus = undefined;
         this.inputBBus = undefined;
         this.controlBus = undefined;
 
-        this.outBus = new Bus();
-        this.zeroBus = new Bus();
+        this.outBus = new Bus(component, 'out');
+        this.zeroBus = new Bus(component, 'zero');
     }
 
     initialize(inputABusRef, inputBBusRef, aluControlBus, aluControlBusMask) {
@@ -23,12 +23,19 @@ class ALU {
         this.controlBusMask = aluControlBusMask;
     }
 
+    draw() {
+        this.outBus.draw('#ffffff', '#00ff00');
+        this.zeroBus.draw('#95ffffff', '#0084ffff');
+    }
+
     passiveUpdate() {
         let res = 0;
         let aValue = this.inputABus.getValue();
         let bValue = this.inputBBus.getValue();
 
-        switch (this.controlBus.getValue(this.aluControlBusMask)) {
+        console.log(this.controlBus.getHexValue());
+
+        switch (this.controlBus.getValue(this.controlBusMask)) {
             case AND:
                 console.log("A & B");
                 res = aValue & bValue;

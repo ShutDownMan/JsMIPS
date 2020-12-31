@@ -1,67 +1,66 @@
-class Processor {
+class MIPS {
 
     constructor() {
-        this.pc = new PCRegister();
+        this.pc = new PCRegister('pcreg');
 
-        this.num4Const = new Bus();
+        this.num4Const = new Bus('4const', 'out');
 
-        this.adder_1 = new Adder();
+        this.adder_1 = new Adder('add1');
 
-        this.instructionMemory = new InstructionMemory();
+        this.instructionMemory = new InstructionMemory('instmem');
 
-        this.controller = new Controller();
+        this.controller = new Controller('ctrl');
 
-        this.regDstMux = new Multiplexer();
+        this.regDstMux = new Multiplexer('regdstmux');
 
-        this.signExtend = new SignExtend();
+        this.signExtend = new SignExtend('signext');
 
-        this.regDataSrcMux = new Multiplexer();
+        this.regDataSrcMux = new Multiplexer('regsrcmux');
 
-        this.registers = new Registers();
+        this.registers = new Registers('registers');
 
-        this.aluSrcMux = new Multiplexer();
+        this.aluSrcMux = new Multiplexer('alusrcmux');
 
-        this.branchSrcMux = new Multiplexer();
+        this.branchSrcMux = new Multiplexer('branchsrcmux');
 
-        this.aluController = new ALUController();
+        this.aluController = new ALUController('aluctrl');
 
-        this.shiftLeft2 = new ShiftLeft2();
+        this.shiftLeft2 = new ShiftLeft2('shiftleft2');
 
-        this.adder_2 = new Adder();
+        this.adder_2 = new Adder('add2');
 
-        this.alu = new ALU();
+        this.alu = new ALU('alu');
 
-        this.branchController = new BranchController();
+        this.branchController = new BranchController('branchctrl');
 
-        this.branchMux = new Multiplexer();
+        this.branchMux = new Multiplexer('branchenmux');
 
-        this.jumpMux = new Multiplexer();
+        this.jumpMux = new Multiplexer('jumpmux');
 
-        this.dataMemory = new DataMemory();
+        this.dataMemory = new DataMemory('datamem');
 
-        this.memToRegMux = new Multiplexer();
-
+        this.memToRegMux = new Multiplexer('memtoregmux');
     }
 
     initialize(instructionMemoryBuffer) {
         console.log("Initializing Component: PC Register");
         this.pc.initialize(this.jumpMux.getOutBus());
-        this.pc.initDrawFunction(drawPCRegister);
+        // this.pc.initDrawFunction(drawPCRegister);
         // this.pc.initialize(undefined);
 
         console.log("Initializing Component: Number 4 const");
         this.num4Const.setValue(4);
-        this.num4Const.initDrawFunction(drawNum4Const);
+        // this.num4Const.initDrawFunction(drawNum4Const);
 
         console.log("Initializing Component: Adder 1");
         this.adder_1.initialize(this.pc.getOutBus(),
             this.num4Const);
-        this.adder_1.initDrawFunction(drawAdder1);
+        // this.adder_1.initDrawFunction(drawAdder1);
 
         console.log("Initializing Component: Instruction Memory");
         this.instructionMemory.initialize(instructionMemoryBuffer,
             this.pc.getOutBus());
-        this.instructionMemory.initDrawFunction(drawInstructionMemory);
+        // this.instructionMemory.initDrawFunction(drawInstructionMemory);
 
         console.log("Initializing Component: Controller");
         this.controller.initialize(this.instructionMemory.getInstructionBus(), 0xFC000000);
@@ -73,7 +72,7 @@ class Processor {
         this.regDstMux.initialize(this.instructionMemory.getInstructionBus(),
             this.instructionMemory.getInstructionBus(),
             this.controller.getRegDstSignal(), 0x001F0000, 0x0000F800);
-        this.regDstMux.initDrawFunction(drawRegDstMux);
+        // this.regDstMux.initDrawFunction(drawRegDstMux);
 
         console.log("Initializing Component: Register Data Source Multiplexer");
         this.regDataSrcMux.initialize(this.memToRegMux.getOutBus(),
@@ -150,8 +149,9 @@ class Processor {
         console.log("------------------------------------------------");
         console.log("Updating Falling Edge Components");
         this.fallingEdge();
+        console.log("------------------------------------------------");
 
-        this.drawComponents(ctx);
+        // this.drawComponents(ctx);
 
         console.log("Registers");
         this.printRegisters();
@@ -162,110 +162,154 @@ class Processor {
     }
 
     risingEdge() {
-        console.log("Clocking Component: PC Register");
-        this.pc.updateState();
+        console.log("Rising Edge: PC Register");
+        this.pc.risingEdge();
+        this.pc.draw();
         // this.pc.printContents();
+
+        console.log("Rising Edge: Instruction Memory");
+        this.instructionMemory.risingEdge();
+        this.instructionMemory.draw();
+
+        console.log("Rising Edge: Registers");
+        this.registers.risingEdge();
+        this.registers.draw();
+
+        console.log("Rising Edge: Data Memory");
+        this.dataMemory.risingEdge();
+        this.dataMemory.draw();
     }
 
     fallingEdge() {
-        console.log("Clocking Component: Registers");
-        this.registers.updateState();
-        // this.registers.printContents();
+        console.log("Falling Edge: PC Register");
+        this.pc.fallingEdge();
+        this.pc.draw();
+        // this.pc.printContents();
 
-        console.log("Clocking Component: Data Memory");
-        this.dataMemory.updateState();
-        // this.dataMemory.printContents();
+        console.log("Falling Edge: Instruction Memory");
+        this.instructionMemory.fallingEdge();
+        this.instructionMemory.draw();
+
+        console.log("Falling Edge: Registers");
+        this.registers.fallingEdge();
+        this.registers.draw();
+
+        console.log("Falling Edge: Data Memory");
+        this.dataMemory.fallingEdge();
+        this.dataMemory.draw();
     }
 
     passiveUpdate() {
         console.log("Updating Component: PC Register");
         this.pc.passiveUpdate();
+        this.pc.draw();
         // this.pc.printContents();
 
         console.log("Updating Component: Adder 1");
         this.adder_1.passiveUpdate();
+        this.adder_1.draw();
         // this.adder_1.printContents();
 
         console.log("Updating Component: Instruction Memory");
         this.instructionMemory.passiveUpdate();
+        this.instructionMemory.draw();
         // this.instructionMemory.printContents();
 
         console.log("Updating Component: Controller");
         this.controller.passiveUpdate();
+        this.controller.draw();
         // this.controller.printContents();
 
         console.log("Updating Component: Register Destination Multiplexer");
         this.regDstMux.passiveUpdate();
+        this.regDstMux.draw();
         // this.regDstMux.printContents();
 
         console.log("Updating Component: Sign Extend");
         this.signExtend.passiveUpdate();
+        this.signExtend.draw();
         // this.signExtend.printContents();
 
         console.log("Updating Component: Register Data Source Multiplexer");
         this.regDataSrcMux.passiveUpdate();
+        this.regDataSrcMux.draw();
         // this.regDataSrcMux.printContents();
 
         console.log("Updating Component: Registers");
         this.registers.passiveUpdate();
+        this.registers.draw();
         // this.registers.printContents();
 
         console.log("Updating Component: Branch Source Multiplexer");
         this.branchMux.passiveUpdate();
+        this.branchMux.draw();
         // this.branchMux.printContents();
 
         console.log("Updating Component: Shift Left 2");
         this.shiftLeft2.passiveUpdate();
+        this.shiftLeft2.draw();
         // this.shiftLeft2.printContents();
 
         console.log("Updating Component: Alu Source Multiplexer");
         this.aluSrcMux.passiveUpdate();
+        this.aluSrcMux.draw();
         // this.aluSrcMux.printContents();
 
         console.log("Updating Component: Alu Controller");
         this.aluController.passiveUpdate();
+        this.aluController.draw();
         // this.aluController.printContents();
 
         console.log("Updating Component: Adder 2");
         this.adder_2.passiveUpdate();
+        this.adder_2.draw();
         // this.adder_2.printContents();
 
         console.log("Updating Component: ALU");
         this.alu.passiveUpdate();
+        this.alu.draw();
         this.alu.printContents();
 
-        console.log("Updating Component: Branch Control");
+        console.log("Updating Component: Branch Controller");
         this.branchController.passiveUpdate();
+        this.branchController.draw();
         // this.branchController.printContents();
 
         console.log("Updating Component: Branch Multiplexer");
         this.branchMux.passiveUpdate();
+        this.branchMux.draw();
         // this.branchMux.printContents();
 
         console.log("Updating Component: Jump Multiplexer");
         this.jumpMux.passiveUpdate();
+        this.jumpMux.draw();
         // this.jumpMux.printContents();
 
         console.log("Updating Component: Data Memory");
         this.dataMemory.passiveUpdate();
+        this.dataMemory.draw();
         // this.dataMemory.printContents();
 
         console.log("Updating Component: Memory to Register Multiplexer");
         this.memToRegMux.passiveUpdate();
+        this.memToRegMux.draw();
         this.memToRegMux.printContents();
 
         // /// Second update
 
         console.log("Updating Component: PC Register");
         this.pc.passiveUpdate();
+        this.pc.draw();
         // this.pc.printContents();
 
         console.log("Updating Component: Register Data Source Multiplexer");
         this.regDataSrcMux.passiveUpdate();
+        this.regDataSrcMux.draw();
         this.regDataSrcMux.printContents();
 
         console.log("Updating Component: Registers");
         this.registers.passiveUpdate();
+        this.registers.draw();
         this.registers.printContents();
     }
 

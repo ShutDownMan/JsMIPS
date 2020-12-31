@@ -1,9 +1,13 @@
 class Adder {
-    constructor() {
+    constructor(component='') {
         this.inputABus = undefined;
         this.inputBBus = undefined;
 
-        this.outputBus = new Bus();
+        this.outputBus = new Bus(component, 'out');
+    }
+
+    draw(){
+        this.outputBus.draw('#ffffff', '#00ff00');
     }
 
     passiveUpdate() {

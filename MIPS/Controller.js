@@ -19,19 +19,32 @@ var InstructionTypeList = {
 
 class Controller {
 
-    constructor() {
+    constructor(component = '') {
         this.inBus = undefined;
 
-        this.RegDstSignal = new Bus();
-        this.ALUSrcSignal = new Bus();
-        this.MemToRegSignal = new Bus();
-        this.RegWriteSignal = new Bus();
-        this.MemReadSignal = new Bus();
-        this.MemWriteSignal = new Bus();
-        this.BranchSignal = new Bus();
-        this.ALUOpSignal = new Bus();
-        this.RegDataSrcSignal = new Bus();
-        this.BranchJumpSignal = new Bus();
+        this.RegDstSignal = new Bus(component, 'regdst');
+        this.ALUSrcSignal = new Bus(component, 'alusrc');
+        this.MemToRegSignal = new Bus(component, 'memtoreg');
+        this.RegWriteSignal = new Bus(component, 'regwrite');
+        this.MemReadSignal = new Bus(component, 'memread');
+        this.MemWriteSignal = new Bus(component, 'memwrite');
+        this.BranchSignal = new Bus(component, 'branch');
+        this.ALUOpSignal = new Bus(component, 'aluop');
+        this.RegDataSrcSignal = new Bus(component, 'regdata');
+        this.BranchJumpSignal = new Bus(component, 'jump');
+    }
+
+    draw() {
+        this.RegDstSignal.draw('#95ffffff', '#0084ffff');
+        this.ALUSrcSignal.draw('#95ffffff', '#0084ffff');
+        this.MemToRegSignal.draw('#95ffffff', '#0084ffff');
+        this.RegWriteSignal.draw('#95ffffff', '#0084ffff');
+        this.MemReadSignal.draw('#95ffffff', '#0084ffff');
+        this.MemWriteSignal.draw('#95ffffff', '#0084ffff');
+        this.BranchSignal.draw('#95ffffff', '#0084ffff');
+        this.ALUOpSignal.draw('#95ffffff', '#0084ffff');
+        this.RegDataSrcSignal.draw('#95ffffff', '#0084ffff');
+        this.BranchJumpSignal.draw('#95ffffff', '#0084ffff');
     }
 
     initialize(inBus, mask) {
@@ -148,7 +161,7 @@ class Controller {
     }
 
     getInstructionType() {
-    	let inBusValue = this.inBus.getValue(this.mask);
+        let inBusValue = this.inBus.getValue(this.mask);
 
         if (inBusValue === IS_RTYPE_INSTRUCTION) return InstructionTypeList.RTYPE;
 

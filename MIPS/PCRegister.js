@@ -1,27 +1,29 @@
 
 
 class PCRegister {
-	constructor() {
+	constructor(component = '') {
 		this.inBus = undefined;
 
-		this.outBus = new Bus();
+		this.outBus = new Bus(component, 'out');
 	}
 
 	initialize(inBus) {
 		this.inBus = inBus;
 	}
 
-	initDrawFunction(drawFunc) {
-		this.draw = drawFunc;
+	draw() {
+		this.outBus.draw('#ffffff', '#00ff00');
 	}
 
-	updateState() {
+	risingEdge() {
 		this.outBus.setValue(this.inBus.getValue());
 	}
 
-	passiveUpdate() {
-		return;
+	fallingEdge() {
+		this.outBus.setValue(this.inBus.getValue());
 	}
+
+	passiveUpdate() { }
 
 	getOutBus() {
 		return this.outBus;

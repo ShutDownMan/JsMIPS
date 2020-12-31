@@ -1,12 +1,17 @@
 const IS_JR_MASK = 0x08;
 
 class ALUController {
-    constructor() {
+    constructor(component='') {
         this.controlBus = undefined;
         this.functBus = undefined;
 
-        this.outBus = new Bus();
-        this.BranchJumpSrcBus = new Bus();
+        this.outBus = new Bus(component, 'out');
+        this.BranchJumpSrcBus = new Bus(component, 'jumpsrc');
+    }
+
+    draw() {
+        this.outBus.draw('#95ffffff', '#0084ffff');
+        this.BranchJumpSrcBus.draw('#95ffffff', '#0084ffff');
     }
 
     initialize(inBus, controlBus, inBusMask, controlBusMask) {

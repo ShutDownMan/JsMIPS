@@ -2,11 +2,11 @@
 
 class InstructionMemory {
 
-	constructor() {
+	constructor(component = '') {
 		this.readAddressBus = undefined;
 		this.memory = undefined;
 
-		this.instructionBus = new Bus();
+		this.instructionBus = new Bus(component, 'out');
 	}
 
 	initialize(memory, readAddressBus) {
@@ -14,12 +14,16 @@ class InstructionMemory {
 		this.readAddressBus = readAddressBus;
 	}
 
-	initDrawFunction(drawFunc) {
-		this.draw = drawFunc;
+	draw() {
+		this.instructionBus.draw('#ffffff', '#00ff00');
 	}
 
+	risingEdge() { }
+
+	fallingEdge() { }
+
 	passiveUpdate() {
-		this.instructionBus.setValue(this.memory[this.readAddressBus.getValue()/4]);
+		this.instructionBus.setValue(this.memory[this.readAddressBus.getValue() / 4]);
 	}
 
 	getInstructionBus() {

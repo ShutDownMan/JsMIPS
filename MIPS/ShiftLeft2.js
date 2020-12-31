@@ -1,9 +1,14 @@
 
 class ShiftLeft2 {
 
-    constructor() {
+    constructor(component = '') {
         this.inBus = undefined;
-        this.outBus = new Bus();
+
+        this.outBus = new Bus(component, 'out');
+    }
+
+    draw() {
+        this.outBus.draw('#ffffff', '#00ff00');
     }
 
     passiveUpdate() {
