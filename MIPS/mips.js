@@ -35,7 +35,7 @@ class MIPS {
 
         this.branchMux = new Multiplexer('branchenmux');
 
-        this.jumpMux = new Multiplexer('jumpmux');
+        this.jumpMux = new Multiplexer('jumpsrcmux');
 
         this.dataMemory = new DataMemory('datamem');
 
