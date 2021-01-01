@@ -139,17 +139,15 @@ class MIPS {
 
     }
 
-    clock() {
+    edgeTrigger() {
+
         console.log("================================================");
-        console.log("Updating Raising Edge Components");
-        this.risingEdge();
+        console.log("Edge Triggering Components");
+        this.edgeTriggerComponents();
+
         console.log("------------------------------------------------");
         console.log("Updating Passive Components");
         this.passiveUpdate();
-        console.log("------------------------------------------------");
-        console.log("Updating Falling Edge Components");
-        this.fallingEdge();
-        console.log("------------------------------------------------");
 
         // this.drawComponents(ctx);
 
@@ -161,41 +159,22 @@ class MIPS {
         console.log("------------------------------------------------");
     }
 
-    risingEdge() {
-        console.log("Rising Edge: PC Register");
-        this.pc.risingEdge();
+    edgeTriggerComponents() {
+        console.log("Edge Triggering: PC Register");
+        this.pc.edgeTrigger();
         this.pc.draw();
-        // this.pc.printContents();
+        this.pc.printContents();
 
-        console.log("Rising Edge: Instruction Memory");
-        this.instructionMemory.risingEdge();
+        console.log("Edge Triggering: Instruction Memory");
+        this.instructionMemory.edgeTrigger();
         this.instructionMemory.draw();
 
-        console.log("Rising Edge: Registers");
-        this.registers.risingEdge();
+        console.log("Edge Triggering: Registers");
+        this.registers.edgeTrigger();
         this.registers.draw();
 
-        console.log("Rising Edge: Data Memory");
-        this.dataMemory.risingEdge();
-        this.dataMemory.draw();
-    }
-
-    fallingEdge() {
-        console.log("Falling Edge: PC Register");
-        this.pc.fallingEdge();
-        this.pc.draw();
-        // this.pc.printContents();
-
-        console.log("Falling Edge: Instruction Memory");
-        this.instructionMemory.fallingEdge();
-        this.instructionMemory.draw();
-
-        console.log("Falling Edge: Registers");
-        this.registers.fallingEdge();
-        this.registers.draw();
-
-        console.log("Falling Edge: Data Memory");
-        this.dataMemory.fallingEdge();
+        console.log("Edge Triggering: Data Memory");
+        this.dataMemory.edgeTrigger();
         this.dataMemory.draw();
     }
 
@@ -233,7 +212,7 @@ class MIPS {
         console.log("Updating Component: Register Data Source Multiplexer");
         this.regDataSrcMux.passiveUpdate();
         this.regDataSrcMux.draw();
-        // this.regDataSrcMux.printContents();
+        this.regDataSrcMux.printContents();
 
         console.log("Updating Component: Registers");
         this.registers.passiveUpdate();
@@ -245,14 +224,14 @@ class MIPS {
         this.branchMux.draw();
         // this.branchMux.printContents();
 
+        console.log("Updating Component: Branch Jump Source Multiplexer");
+        this.branchSrcMux.passiveUpdate();
+        this.branchSrcMux.draw();
+
         console.log("Updating Component: Shift Left 2");
         this.shiftLeft2.passiveUpdate();
         this.shiftLeft2.draw();
         // this.shiftLeft2.printContents();
-
-        console.log("Updating Component: Branch Jump Source Multiplexer");
-        this.branchSrcMux.passiveUpdate();
-        this.branchSrcMux.draw();
 
         console.log("Updating Component: Alu Source Multiplexer");
         this.aluSrcMux.passiveUpdate();

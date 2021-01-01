@@ -30,7 +30,7 @@ class Controller {
         this.MemWriteSignal = new Bus(component, 'memwrite');
         this.BranchSignal = new Bus(component, 'branch');
         this.ALUOpSignal = new Bus(component, 'aluop');
-        this.RegDataSrcSignal = new Bus(component, 'regdata');
+        this.RegDataSrcSignal = new Bus(component, 'regsrc');
         this.BranchJumpSignal = new Bus(component, 'jump');
     }
 

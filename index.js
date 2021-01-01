@@ -14,9 +14,9 @@ var s = Snap("#main_canvas");
 Snap.load("SVG_monocycle.svg", function (loadedFragment) {
     s.append(loadedFragment);
     process_svg_labels();
-    // mainCanvas.onmousedown = function (e) {
-    //     if (e.button !== 1) e.stopImmediatePropagation();
-    // }
+    mainCanvas.onmousedown = function (e) {
+        if (e.button !== 1) e.stopImmediatePropagation();
+    }
 
     var panZoomTiger = svgPanZoom(mainCanvas, {
         zoomEnabled: true,
@@ -39,7 +39,7 @@ function process_svg_labels() {
 
             if (splitted_label.length >= 3) {
                 elem.attr({ "data-component": splitted_label[0] });
-                elem.attr({ "data-bus_label": splitted_label[1] });
+                elem.attr({ "data-part_label": splitted_label[1] });
 
                 if (splitted_label[2]) seq_order = splitted_label[2].match(/\d+/)
                 if (seq_order != null) {
@@ -71,7 +71,7 @@ console.log(instructionMemoryBuffer);
 
 mips.initialize(instructionMemoryBuffer);
 
-// mips.clock();
+// mips.edgeTrigger();
 
 function getInstructions(instructionsStr) {
     let i = 0;
@@ -79,9 +79,11 @@ function getInstructions(instructionsStr) {
 
     console.log("Instructions:");
     instructionsStr.split('\n').forEach((line) => {
-        instructionMemory[i] = getNumberFromInstruction(line);
-        console.log("Instruction " + instructionMemory[i]);
-        i++;
+        if(line.length > 0) {
+            instructionMemory[i] = getNumberFromInstruction(line);
+            console.log("Instruction " + instructionMemory[i]);    
+            i++;
+        }
     });
 
     console.log("------------------------------------------------");
@@ -101,8 +103,8 @@ function getNumberFromInstruction(str) {
     return res;
 }
 
-function clock() {
-    mips.clock();
+function edgeTrigger() {
+    mips.edgeTrigger();
 
     // lightupBusLabel('instmem', 'out');
 

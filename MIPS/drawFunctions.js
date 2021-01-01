@@ -43,7 +43,7 @@ function lightupBusLabel(component, value, bus_label = '*', default_color = '#00
 
 function lightupSequence(component, value, bus_label = '*', seq_order = '*', default_color = '#000000', highlight_color = '#ffffff') {
     let search_component = `[data-component='${component}']`;
-    let search_bus_label = (bus_label !== '*') ? `[data-bus_label='${bus_label}']` : '';
+    let search_bus_label = (bus_label !== '*') ? `[data-part_label='${bus_label}']` : '';
     let search_seq_order = (seq_order !== '*') ? `[data-seq_order='${seq_order}']` : '';
 
     foundElems = s.selectAll(`*${search_component}${search_bus_label}${search_seq_order}`);
@@ -75,7 +75,7 @@ function lightupSequence(component, value, bus_label = '*', seq_order = '*', def
 function setBusHoverValue(component, value = 0, bus_label = '*', seq_order = '*') {
     let hexValue = '';
     let search_component = `[data-component='${component}']`;
-    let search_bus_label = (bus_label !== '*') ? `[data-bus_label='${bus_label}']` : '';
+    let search_bus_label = (bus_label !== '*') ? `[data-part_label='${bus_label}']` : '';
     let search_seq_order = (seq_order !== '*') ? `[data-seq_order='${seq_order}']` : '';
 
     foundElems = s.selectAll(`*${search_component}${search_bus_label}${search_seq_order}`);
@@ -96,7 +96,7 @@ function setBusHoverValue(component, value = 0, bus_label = '*', seq_order = '*'
 
 function setHoverValue(component, value = 0, bus_label = '*', seq_order = '*') {
     search_component = `[data-component='${component}']`;
-    search_bus_label = (bus_label !== '*') ? `[data-bus_label='${bus_label}']` : '';
+    search_bus_label = (bus_label !== '*') ? `[data-part_label='${bus_label}']` : '';
     search_seq_order = (seq_order !== '*') ? `[data-seq_order='${seq_order}']` : '';
 
     foundElems = s.selectAll(`*${search_component}${search_bus_label}${search_seq_order}`);

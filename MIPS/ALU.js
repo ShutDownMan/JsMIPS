@@ -33,7 +33,7 @@ class ALU {
         let aValue = this.inputABus.getValue();
         let bValue = this.inputBBus.getValue();
 
-        console.log(this.controlBus.getHexValue());
+        // console.log(this.controlBus.getHexValue());
 
         switch (this.controlBus.getValue(this.controlBusMask)) {
             case AND:
@@ -62,7 +62,7 @@ class ALU {
                 break;
         }
 
-        this.zeroBus.setValue((res === 0) ? 0 : 1);
+        this.zeroBus.setValue((res === 0) ? 1 : 0);
 
         this.outBus.setValue(res);
     }

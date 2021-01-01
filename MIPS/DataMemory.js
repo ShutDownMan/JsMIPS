@@ -5,6 +5,12 @@ class DataMemory {
         this.writeDataBus = undefined;
         this.writeMemControlBus = undefined;
         this.readMemControlBus = undefined;
+
+        this.addressValue = 0;
+        this.writeDataValue = 0;
+        this.writeMemControlValue = 0;
+        this.readMemControlValue = 0;
+
         this.memory = new Array(256).fill(0);
 
         this.readDataBus = new Bus(component, 'readdata');
@@ -22,12 +28,28 @@ class DataMemory {
         this.readDataBus.draw('#ffffff', '#00ff00');
     }
 
-    risingEdge() { }
+    readInput() {
+        this.writeMemControlValue = this.writeMemControlBus.getValue();
+        this.writeDataValue = this.writeDataBus.getValue();
+        this.addressValue = this.addressBus.getValue();
+        this.readMemControlValue = this.readMemControlBus.getValue();
+    }
+
+    edgeTrigger() {
+        this.readInput();
+        if (this.writeMemControlValue)
+            this.memcpy([this.writeDataValue], 0,
+                this.memory, this.addressValue, 4);
+    }
+
+    passiveUpdate() {
+        this.readInput();
+
+        if (this.readMemControlValue)
+            this.readDataBus.setValue(this.memory[this.addressBus.getValue()]);
+    }
 
     fallingEdge() {
-        if (this.writeMemControlBus.getValue())
-            this.memcpy([this.writeDataBus.getValue()], 0,
-                this.memory, this.addressBus.getValue(), 4);
     }
 
     memcpy(src, srcOffset, dst, dstOffset, length) {
@@ -49,11 +71,6 @@ class DataMemory {
         }
 
         return dst;
-    }
-
-    passiveUpdate() {
-        if (this.readMemControlBus.getValue())
-            this.readDataBus.setValue(this.memory[this.addressBus.getValue()]);
     }
 
     getReadDataBus() {

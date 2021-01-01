@@ -3,6 +3,7 @@
 class PCRegister {
 	constructor(component = '') {
 		this.inBus = undefined;
+		this.pcValue = 0;
 
 		this.outBus = new Bus(component, 'out');
 	}
@@ -15,15 +16,19 @@ class PCRegister {
 		this.outBus.draw('#ffffff', '#00ff00');
 	}
 
-	risingEdge() {
-		this.outBus.setValue(this.inBus.getValue());
+	readInput() {
+		this.pcValue = this.inBus.getValue();
 	}
 
-	fallingEdge() {
-		this.outBus.setValue(this.inBus.getValue());
+	edgeTrigger() {
+		this.readInput();
 	}
 
-	passiveUpdate() { }
+	passiveUpdate() {
+		this.readInput();
+
+		this.outBus.setValue(this.pcValue);
+	}
 
 	getOutBus() {
 		return this.outBus;
