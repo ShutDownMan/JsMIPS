@@ -41,10 +41,12 @@ function getHexValue(value, mask = ALL_SET) {
 
 function lightupBusLabel(component, value, bus_label = '*', default_color = '#000000', highlight_color = '#ffffff') {
     let i = 1;
-    let lightupInterval = setInterval(() => {
-        if (lightupSequence(component, value, bus_label, String(i++), default_color, highlight_color).length == 0)
-            clearInterval(lightupInterval);
-    }, 10);
+    while (lightupSequence(component, value, bus_label, String(i++), default_color, highlight_color).length != 0)
+        ;
+    // let lightupInterval = setInterval(() => {
+    //     if (lightupSequence(component, value, bus_label, String(i++), default_color, highlight_color).length == 0)
+    //         clearInterval(lightupInterval);
+    // }, 10);
 }
 
 function lightupSequence(component, value, bus_label = '*', seq_order = '*', default_color = '#000000', highlight_color = '#ffffff') {
