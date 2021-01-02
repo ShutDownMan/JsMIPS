@@ -3,6 +3,8 @@
 class InstructionMemory {
 
 	constructor(component = '') {
+		this.component = component;
+
 		this.readAddressBus = undefined;
 		this.readAddressValue = 0;
 		this.memory = undefined;
@@ -16,6 +18,9 @@ class InstructionMemory {
 	}
 
 	draw() {
+		setLabelText(this.component, 'readaddr_label', getHexValue(this.readAddressValue));
+		setLabelText(this.component, 'inst_label', getHexValue(this.memory[this.readAddressValue / 4]));
+
 		this.instructionBus.draw('#ffffff', '#00ff00');
 	}
 

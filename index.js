@@ -37,23 +37,26 @@ function process_svg_labels() {
         if (elem_label != null) {
             splitted_label = elem_label.split('-')
 
-            if (splitted_label.length >= 3) {
-                elem.attr({ "data-component": splitted_label[0] });
+
+            elem.attr({ "data-component": splitted_label[0] });
+            if (splitted_label.length >= 2)
                 elem.attr({ "data-part_label": splitted_label[1] });
 
-                if (splitted_label[2]) seq_order = splitted_label[2].match(/\d+/)
+            if (splitted_label.length >= 3) {
+                seq_order = splitted_label[2].match(/\d+/)
                 if (seq_order != null) {
                     elem.attr({ "data-seq_order": seq_order });
                     // console.log(elem_label);
                 }
-
-                elem.attr({ "data-type": "path" });
-                if (splitted_label.length > 3) {
-                    elem.attr({ "data-type": splitted_label[3] });
-                }
-
-                // console.log(elem.attr())
             }
+
+            if (splitted_label.length >= 4) {
+                elem.attr({ "data-type": splitted_label[3] });
+            } else {
+                elem.attr({ "data-type": "path" });
+            }
+
+            // console.log(elem.attr())
         }
     });
 }
@@ -79,9 +82,9 @@ function getInstructions(instructionsStr) {
 
     console.log("Instructions:");
     instructionsStr.split('\n').forEach((line) => {
-        if(line.length > 0) {
+        if (line.length > 0) {
             instructionMemory[i] = getNumberFromInstruction(line);
-            console.log("Instruction " + instructionMemory[i]);    
+            console.log("Instruction " + instructionMemory[i]);
             i++;
         }
     });

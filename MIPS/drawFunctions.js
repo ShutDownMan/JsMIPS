@@ -21,10 +21,16 @@ function verticalDraw(drawFunc) {
 }
 
 function getBusHexValue(bus_element, value) {
-    let mask = 0, digits = 8, rightmostSetBit = 0, leftmostSetBit = 0;
+    let mask = 0;
 
     mask = (bus_element.attr('data-bus_mask')) ? parseInt(bus_element.attr('data-bus_mask')) : ALL_SET;
-    // console.log(bus_element.attr('inkscape:label') + ' - ' + value);
+
+    return getHexValue(value, mask);
+}
+
+function getHexValue(value, mask=ALL_SET) {
+    let digits = 8, rightmostSetBit = 0, leftmostSetBit = 0;
+
     rightmostSetBit = Math.ceil(Math.log2((mask & -mask) + 1)) - 1;
     leftmostSetBit = Math.floor(Math.log2(mask));
     digits = Math.ceil((rightmostSetBit - leftmostSetBit) / 4) - 1;
@@ -118,3 +124,13 @@ Snap.plugin(function (Snap, Element, Paper, global) {
         return text ? this.node.firstChild.textContent = text : this.node.firstChild.textContent;
     };
 });
+
+function setLabelText(component, part_label, value) {
+    search_component = `[data-component='${component}']`;
+    search_part_label = (part_label !== '*') ? `[data-part_label='${part_label}']` : '';
+
+    foundElems = s.selectAll(`*${search_component}${search_part_label}`);
+    foundElems.forEach(function (element) {
+        element.attr('text', value);
+    });
+}
