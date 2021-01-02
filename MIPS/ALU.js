@@ -8,6 +8,9 @@ const NOR = 12;
 class ALU {
 
     constructor(component = '') {
+        this.component = component;
+        this.currentOperationType = undefined;
+
         this.inputABus = undefined;
         this.inputBBus = undefined;
         this.controlBus = undefined;
@@ -24,6 +27,8 @@ class ALU {
     }
 
     draw() {
+        setLabelText(this.component, 'op_type_label', this.currentOperationType);
+
         this.outBus.draw('#ffffff', '#00ff00');
         this.zeroBus.draw('#95ffffff', '#0084ffff');
     }
@@ -38,26 +43,32 @@ class ALU {
         switch (this.controlBus.getValue(this.controlBusMask)) {
             case AND:
                 console.log("A & B");
+                this.currentOperationType = 'A & B';
                 res = aValue & bValue;
                 break;
             case OR:
                 console.log("A | B");
+                this.currentOperationType = 'A | B';
                 res = aValue | bValue;
                 break;
             case SUM:
                 console.log("A + B");
+                this.currentOperationType = 'A + B';
                 res = aValue + bValue;
                 break;
             case SUB:
                 console.log("A - B");
+                this.currentOperationType = 'A - B';
                 res = aValue - bValue;
                 break;
             case LST:
                 console.log("A < B");
+                this.currentOperationType = 'A < B';
                 res = (aValue < bValue);
                 break;
             case NOR:
                 console.log("!(A | B)");
+                this.currentOperationType = '!(A | B)';
                 res = ~(aValue | bValue);
                 break;
         }

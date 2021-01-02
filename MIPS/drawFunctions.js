@@ -28,7 +28,7 @@ function getBusHexValue(bus_element, value) {
     return getHexValue(value, mask);
 }
 
-function getHexValue(value, mask=ALL_SET) {
+function getHexValue(value, mask = ALL_SET) {
     let digits = 8, rightmostSetBit = 0, leftmostSetBit = 0;
 
     rightmostSetBit = Math.ceil(Math.log2((mask & -mask) + 1)) - 1;
@@ -57,7 +57,7 @@ function lightupSequence(component, value, bus_label = '*', seq_order = '*', def
 
     foundElems.forEach(function (elem) {
         let color = (parseInt(getBusHexValue(elem, value)) === 0) ? default_color : highlight_color;
-        
+
         if (elem.type == "path") {
             if (elem.attr('data-type') == 'end') {
                 elem.attr({ "fill": color });
@@ -132,5 +132,30 @@ function setLabelText(component, part_label, value) {
     foundElems = s.selectAll(`*${search_component}${search_part_label}`);
     foundElems.forEach(function (element) {
         element.attr('text', value);
+    });
+}
+
+function setElementColor(component, part_label, color) {
+    search_component = `[data-component='${component}']`;
+    search_part_label = (part_label !== '*') ? `[data-part_label='${part_label}']` : '';
+
+    foundElems = s.selectAll(`*${search_component}${search_part_label}`);
+    foundElems.forEach(function (element) {
+
+        if (element.type == "path") {
+            if (element.attr('data-type') == 'end') {
+                element.attr({ "fill": color });
+            } else {
+                element.attr({ "stroke": color });
+            }
+        }
+        if (element.type == "rect") {
+            element.attr({ "fill": color });
+        }
+        if (element.type == "text") {
+            element.children().forEach(function (child) {
+                child.attr({ "fill": color });
+            });
+        }
     });
 }

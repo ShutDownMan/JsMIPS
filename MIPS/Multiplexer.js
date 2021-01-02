@@ -1,6 +1,8 @@
 class Multiplexer {
 
     constructor(component = '') {
+        this.component = component;
+
         this.inputABus = undefined;
         this.inputBBus = undefined;
         this.controlSignal = undefined;
@@ -9,6 +11,14 @@ class Multiplexer {
     }
 
     draw() {
+        if (this.controlSignal.getValue() === 0) {
+            setElementColor(this.component, 'bus_1', '#ffffffff');
+            setElementColor(this.component, 'bus_2', '#ffffff4b');
+        } else {
+            setElementColor(this.component, 'bus_1', '#ffffff4b');
+            setElementColor(this.component, 'bus_2', '#ffffffff');
+        }
+
         this.outBus.draw('#ffffff', '#00ff00');
     }
 

@@ -20,6 +20,9 @@ var InstructionTypeList = {
 class Controller {
 
     constructor(component = '') {
+        this.component = component;
+        this.currentInstruction = undefined;
+
         this.inBus = undefined;
 
         this.RegDstSignal = new Bus(component, 'regdst');
@@ -35,6 +38,8 @@ class Controller {
     }
 
     draw() {
+        setLabelText(this.component, 'inst_type_label', 'Instruction: ' + this.currentInstructionType);
+
         this.RegDstSignal.draw('#95ffffff', '#0084ffff');
         this.ALUSrcSignal.draw('#95ffffff', '#0084ffff');
         this.MemToRegSignal.draw('#95ffffff', '#0084ffff');
@@ -70,6 +75,7 @@ class Controller {
         switch (currentInstructionType) {
             case InstructionTypeList.RTYPE:
                 console.log("R Type Instruction detected");
+                this.currentInstructionType = 'R Type';
                 this.RegDstSignal.setValue(1);
                 this.RegWriteSignal.setValue(1);
                 this.ALUOpSignal.setValue(2);
@@ -77,6 +83,7 @@ class Controller {
 
             case InstructionTypeList.LW:
                 console.log("LW Instruction detected");
+                this.currentInstructionType = 'LW';
                 this.ALUSrcSignal.setValue(1);
                 this.MemToRegSignal.setValue(1);
                 this.RegWriteSignal.setValue(1);
@@ -85,30 +92,35 @@ class Controller {
 
             case InstructionTypeList.SW:
                 console.log("SW Instruction detected");
+                this.currentInstructionType = 'SW';
                 this.ALUSrcSignal.setValue(1);
                 this.MemWriteSignal.setValue(1);
                 break;
 
             case InstructionTypeList.BEQ:
                 console.log("BEQ Instruction detected");
+                this.currentInstructionType = 'BEQ';
                 this.BranchSignal.setValue(1);
                 this.ALUOpSignal.setValue(1);
                 break;
 
             case InstructionTypeList.BNE:
                 console.log("BNE Instruction detected");
+                this.currentInstructionType = 'BNE';
                 this.BranchSignal.setValue(2);
                 this.ALUOpSignal.setValue(1);
                 break;
 
             case InstructionTypeList.LI:
                 console.log("LI Instruction detected");
+                this.currentInstructionType = 'LI';
                 this.RegWriteSignal.setValue(1);
                 this.RegDataSrcSignal.setValue(1);
                 break;
 
             case InstructionTypeList.J:
                 console.log("J Instruction detected");
+                this.currentInstructionType = 'J';
                 this.BranchSignal.setValue(1);
                 this.ALUOpSignal.setValue(1);
                 this.BranchJumpSignal.setValue(1);
@@ -116,6 +128,7 @@ class Controller {
 
             default:
                 console.log("INSTRUCTION TYPE NOT DETECTED!");
+                this.currentInstructionType = 'ERROR';
                 break;
         }
     }
