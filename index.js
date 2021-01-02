@@ -14,9 +14,9 @@ var s = Snap("#main_canvas");
 Snap.load("SVG_monocycle.svg", function (loadedFragment) {
     s.append(loadedFragment);
     process_svg_labels();
-    mainCanvas.onmousedown = function (e) {
-        if (e.button !== 1) e.stopImmediatePropagation();
-    }
+    // mainCanvas.onmousedown = function (e) {
+    //     if (e.button !== 1) e.stopImmediatePropagation();
+    // }
 
     var panZoomTiger = svgPanZoom(mainCanvas, {
         zoomEnabled: true,
