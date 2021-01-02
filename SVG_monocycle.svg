@@ -2896,9 +2896,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="11.313708"
-     inkscape:cx="794.5759"
-     inkscape:cy="323.74664"
+     inkscape:zoom="45.254834"
+     inkscape:cx="784.43957"
+     inkscape:cy="333.08111"
      inkscape:document-units="px"
      inkscape:current-layer="layer10"
      inkscape:document-rotation="0"
@@ -6206,16 +6206,16 @@
        ry="0.23561937" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.881944px;line-height:1.25;font-family:'Cooper Black';-inkscape-font-specification:'Cooper Black, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#008b7e;fill-opacity:1;stroke-width:0.264583;"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.881944px;line-height:1.25;font-family:'Cooper Black';-inkscape-font-specification:'Cooper Black, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;fill:#008b7e;fill-opacity:1;stroke-width:0.264583"
        x="239.4183"
-       y="119.5847"
+       y="119.64084"
        id="text11924"
        inkscape:label="alu-op_type_label"><tspan
          sodipodi:role="line"
          id="tspan11922"
          x="239.4183"
-         y="119.5847"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.88194445px;font-family:'Cooper Black';-inkscape-font-specification:'Cooper Black, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#008b7e;fill-opacity:1;stroke-width:0.264583;">!(A|B)</tspan></text>
+         y="119.64084"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.881944px;font-family:'Cooper Black';-inkscape-font-specification:'Cooper Black, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#008b7e;fill-opacity:1;stroke-width:0.264583">!(A|B)</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
