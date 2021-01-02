@@ -1,6 +1,8 @@
 class Registers {
 
     constructor(component = '') {
+        this.component = component;
+
         this.readRegister1Bus = undefined;
         this.readRegister2Bus = undefined;
         this.writeDataBus = undefined;
@@ -20,6 +22,9 @@ class Registers {
     }
 
     draw() {
+        setLabelText(this.component, 'readaddr_1_label', getHexValue(this.readRegister1Bus.getValue(), this.readRegister1BusMask));
+        setLabelText(this.component, 'readaddr_2_label', getHexValue(this.readRegister2Bus.getValue(), this.readRegister2BusMask));
+
         this.readData1Bus.draw('#ffffff', '#00ff00');
         this.readData2Bus.draw('#ffffff', '#00ff00');
     }
