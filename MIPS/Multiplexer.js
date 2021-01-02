@@ -31,7 +31,7 @@ class Multiplexer {
             outValue = this.inputBBus.getValue(this.inputBBusMask);
         }
 
-        console.log(this.controlSignal.getValue());
+        // console.log(this.controlSignal.getValue());
         this.outBus.setValue(outValue);
     }
 
