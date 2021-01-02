@@ -102,8 +102,10 @@ class MIPS {
 
         console.log("Initializing Component: Shift Left 2");
         this.shiftLeft2.initialize(this.branchSrcMux.getOutBus());
-
-        console.log("Initializing Component: Adder 2");
+        10
+        10
+        10
+        10
         this.adder_2.initialize(this.shiftLeft2.getOutBus(),
             this.adder_1.getOutBus());
 
@@ -212,7 +214,7 @@ class MIPS {
         console.log("Updating Component: Register Data Source Multiplexer");
         this.regDataSrcMux.passiveUpdate();
         this.regDataSrcMux.draw();
-        this.regDataSrcMux.printContents();
+        // this.regDataSrcMux.printContents();
 
         console.log("Updating Component: Registers");
         this.registers.passiveUpdate();
@@ -251,12 +253,12 @@ class MIPS {
         console.log("Updating Component: ALU");
         this.alu.passiveUpdate();
         this.alu.draw();
-        this.alu.printContents();
+        // this.alu.printContents();
 
         console.log("Updating Component: Branch Controller");
         this.branchController.passiveUpdate();
         this.branchController.draw();
-        this.branchController.printContents();
+        // this.branchController.printContents();
 
         console.log("Updating Component: Branch Multiplexer");
         this.branchMux.passiveUpdate();
@@ -276,7 +278,7 @@ class MIPS {
         console.log("Updating Component: Memory to Register Multiplexer");
         this.memToRegMux.passiveUpdate();
         this.memToRegMux.draw();
-        this.memToRegMux.printContents();
+        // this.memToRegMux.printContents();
 
         // /// Second update
 
@@ -288,12 +290,12 @@ class MIPS {
         console.log("Updating Component: Register Data Source Multiplexer");
         this.regDataSrcMux.passiveUpdate();
         this.regDataSrcMux.draw();
-        this.regDataSrcMux.printContents();
+        // this.regDataSrcMux.printContents();
 
         console.log("Updating Component: Registers");
         this.registers.passiveUpdate();
         this.registers.draw();
-        this.registers.printContents();
+        // this.registers.printContents();
     }
 
     drawComponents(ctx) {

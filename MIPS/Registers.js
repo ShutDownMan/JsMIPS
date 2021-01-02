@@ -25,8 +25,33 @@ class Registers {
         setLabelText(this.component, 'readaddr_1_label', getHexValue(this.readRegister1Bus.getValue(), this.readRegister1BusMask));
         setLabelText(this.component, 'readaddr_2_label', getHexValue(this.readRegister2Bus.getValue(), this.readRegister2BusMask));
 
+        this.drawMemory();
+
         this.readData1Bus.draw('#ffffff', '#00ff00');
         this.readData2Bus.draw('#ffffff', '#00ff00');
+    }
+
+    drawMemory() {
+        let resultMat = [];
+        let i, hexValue;
+        let splittedValues;
+
+        for (i = 0; i < 32; ++i) {
+
+            if(this.memory[i] >= 0) {
+                hexValue = ("000000000000000" + this.memory[i].toString(16)).substr(-8).toUpperCase();
+            } else {
+                hexValue = ("000000000000000" + (ALL_SET + this.memory[i]).toString(16)).substr(-8).toUpperCase();
+            }
+            splittedValues = hexValue.match(/../g);
+            // if(this.memory[i])
+            //     console.log(splittedValues);
+
+            resultMat.push(splittedValues);
+        }
+        // console.log(resultMat)
+
+        drawMemoryLabel(this.component, 'memory_label', resultMat);
     }
 
     readInput() {
@@ -38,7 +63,7 @@ class Registers {
     }
 
     edgeTrigger() {
-		this.readInput();
+        this.readInput();
 
         if (this.writeControlValue) {
             this.memory[this.writeRegisterValue] = this.writeDataValue;
@@ -47,7 +72,7 @@ class Registers {
     }
 
     passiveUpdate() {
-		this.readInput();
+        this.readInput();
 
         this.readData1Bus.setValue(
             this.memory[this.readRegister1Value]);

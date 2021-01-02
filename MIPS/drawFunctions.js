@@ -137,6 +137,64 @@ function setLabelText(component, part_label, value) {
     });
 }
 
+function drawMemoryLabel(component, part_label, values) {
+    let idx;
+    let currentColor = '';
+
+    search_component = `[data-component='${component}']`;
+    search_part_label = (part_label !== '*') ? `[data-part_label='${part_label}']` : '';
+
+    foundElems = s.selectAll(`*${search_component}${search_part_label}`);
+    foundElems.forEach(function (element) {
+        idx = 0;
+        element.children().forEach(function (tspanLine) {
+            if (!tspanLine || tspanLine.type !== 'tspan')
+                return;
+
+            // console.log('tspanLine');
+            // console.log(tspanLine);
+
+            tspanLine.children().forEach(function (hexBlock) {
+                if (!hexBlock || hexBlock.type !== 'tspan')
+                    return;
+
+                let i = parseInt(idx / 4), j = idx % 4;
+
+                // console.log('hexBlock');
+                // console.log(hexBlock);
+
+                let red = parseInt(values[i][j], 16);
+                let green = (139 - parseInt(values[i][j], 16) * 30 >= 0) ? 139 - parseInt(values[i][j], 16) * 30 : '00';
+                let blue = (126 - parseInt(values[i][j], 16) * 30 >= 0) ? 126 - parseInt(values[i][j], 16) * 30 : '00';
+
+                // if(parseInt(values[i][j], 16))
+                //     console.log(`rgb(${red}, ${green}, ${blue})`);
+
+                hexBlock.node.style.fill = `rgb(${red}, ${green}, ${blue})`;
+                hexBlock.node.textContent = values[i][j];
+
+                idx++;
+            });
+
+        });
+    });
+
+    // for (i = 0; i < 32; ++i) {
+    //     for (j = 0; j < values[i].length; ++j) {
+    //         currentColor = values[i, j];
+    //         currentColor += (parseInt(values[i, j], 16) - 139 >= 0) ? parseInt(values[i, j]) - 139 : 0;
+    //         currentColor += (parseInt(values[i, j], 16) - 126 >= 0) ? parseInt(values[i, j]) - 126 : 0;
+    //         currentColor += 'ff';
+
+    //     }
+    // }
+
+    // for (i = 0; i < splittedValues.length; ++i) {
+    //     currentSpan = `<svg:span style="color: ${currentColor};">${splittedValues[i]}${(j % 2) ? ' ' : '\n'}</span>`
+    // }
+
+}
+
 function setElementColor(component, part_label, color) {
     search_component = `[data-component='${component}']`;
     search_part_label = (part_label !== '*') ? `[data-part_label='${part_label}']` : '';
