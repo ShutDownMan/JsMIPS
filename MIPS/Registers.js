@@ -69,7 +69,7 @@ class Registers {
             if(this.memory[i] >= 0) {
                 hexValue = ("000000000000000" + this.memory[i].toString(16)).substr(-8).toUpperCase();
             } else {
-                hexValue = ("000000000000000" + (ALL_SET + this.memory[i]).toString(16)).substr(-8).toUpperCase();
+                hexValue = ("000000000000000" + (ALL_SET + 1 + this.memory[i]).toString(16)).substr(-8).toUpperCase();
             }
             splittedValues = hexValue.match(/../g);
             // if(this.memory[i])
