@@ -240,9 +240,9 @@ function setRegisterSelectorPosition(component, part_label, offsets, value) {
     let new_x = offsets[0] + parseInt(value%2) * offsets[2];
     let new_y = offsets[1] + parseInt(value/2) * offsets[3];
 
-    console.log(value);
-    console.log({'x': offsets[0], 'y': offsets[1]});
-    console.log({'x': new_x, 'y': new_y});
+    // console.log(value);
+    // console.log({'x': offsets[0], 'y': offsets[1]});
+    // console.log({'x': new_x, 'y': new_y});
 
     selectorElem.attr({'x': new_x, 'y': new_y});
 }

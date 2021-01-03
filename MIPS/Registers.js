@@ -39,15 +39,19 @@ class Registers {
         this.readRegister2BusMask = readRegister2BusMask;
 
         this.registersMemOffsets = getRegistersOffsets(this.component);
-        console.log(this.registersMemOffsets);
+        // console.log(this.registersMemOffsets);
     }
 
     draw() {
         setLabelText(this.component, 'readaddr_1_label', getHexValue(this.readRegister1Bus.getValue(), this.readRegister1BusMask));
         setLabelText(this.component, 'readaddr_2_label', getHexValue(this.readRegister2Bus.getValue(), this.readRegister2BusMask));
 
+        setLabelText(this.component, 'writedataregister_label', getHexValue(this.writeRegisterBus.getValue(), '0xFF'));
+        setLabelText(this.component, 'writedata_label', getHexValue(this.writeDataBus.getValue()));
+
         this.drawMemory();
 
+        setRegisterSelectorPosition(this.component, 'writeregister_selector', this.registersMemOffsets, this.writeRegisterValue);
         setRegisterSelectorPosition(this.component, 'readdata1_selector', this.registersMemOffsets, this.readRegister1Value);
         setRegisterSelectorPosition(this.component, 'readdata2_selector', this.registersMemOffsets, this.readRegister2Value);
 
