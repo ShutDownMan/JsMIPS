@@ -6,6 +6,8 @@ const mainCanvas = document.getElementById('main_canvas');
 const instructionArea = document.getElementById('instruction_area');
 // const ctx = mainCanvas.getContext("2d");
 
+const mips = new MIPS();
+
 // ctx.fillStyle = 'rgb(75,137,4)';
 // ctx.fillStyle = 'black';
 // ctx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
@@ -25,10 +27,17 @@ Snap.load("SVG_monocycle.svg", function (loadedFragment) {
         center: true,
         minZoom: 0.9
     });
+
+    const instructionMemoryBuffer = getInstructions(instructionArea.value);
+
+    console.log(instructionMemoryBuffer);
+
+    mips.initialize(instructionMemoryBuffer);
 });
 
 function process_svg_labels() {
-    elem_list = s.selectAll('*');
+
+    let elem_list = s.selectAll('*');
     // console.log(elem_list);
     elem_list.forEach(function (elem) {
         elem_label = elem.attr('inkscape:label');
@@ -59,20 +68,8 @@ function process_svg_labels() {
             // console.log(elem.attr())
         }
     });
+
 }
-
-// const pz = panzoom(mainCanvas, {
-//     maxZoom: 4,
-//     minZoom: 0.9,
-//     bounds: true
-// })
-
-const mips = new MIPS();
-const instructionMemoryBuffer = getInstructions(instructionArea.value);
-
-console.log(instructionMemoryBuffer);
-
-mips.initialize(instructionMemoryBuffer);
 
 // mips.edgeTrigger();
 

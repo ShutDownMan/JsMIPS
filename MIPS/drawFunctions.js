@@ -62,17 +62,17 @@ function lightupSequence(component, value, bus_label = '*', seq_order = '*', def
 
         if (elem.type == "path") {
             if (elem.attr('data-type') == 'end') {
-                elem.attr({ "fill": color });
+                elem.node.style.fill = color;
             } else {
-                elem.attr({ "stroke": color });
+                elem.node.style.stroke = color;
             }
         }
         if (elem.type == "rect") {
-            elem.attr({ "fill": color });
+            elem.node.style.fill = color;
         }
         if (elem.type == "text") {
             elem.children().forEach(function (child) {
-                child.attr({ "fill": color });
+                elem.node.style.fill = color;
             });
         }
     });
@@ -218,4 +218,31 @@ function setElementColor(component, part_label, color) {
             });
         }
     });
+}
+
+function getRegistersOffsets(component) {
+    let readdata1_selector = s.select(`*[data-component=${component}][data-part_label=readdata1_selector]`);
+    let readdata2_selector = s.select(`*[data-component=${component}][data-part_label=readdata2_selector]`);
+
+    if (!readdata1_selector || !readdata2_selector)
+        return [0, 0, 0, 0]
+
+    let readdata1_selectorBBox = readdata1_selector.getBBox()
+    let readdata2_selectorBBox = readdata2_selector.getBBox()
+
+    return [readdata1_selectorBBox.x, readdata1_selectorBBox.y,
+    readdata2_selectorBBox.x - readdata1_selectorBBox.x, readdata2_selectorBBox.y - readdata1_selectorBBox.y]
+}
+
+function setRegisterSelectorPosition(component, part_label, offsets, value) {
+    let selectorElem = s.select(`*[data-component=${component}][data-part_label=${part_label}]`);
+
+    let new_x = offsets[0] + parseInt(value%2) * offsets[2];
+    let new_y = offsets[1] + parseInt(value/2) * offsets[3];
+
+    console.log(value);
+    console.log({'x': offsets[0], 'y': offsets[1]});
+    console.log({'x': new_x, 'y': new_y});
+
+    selectorElem.attr({'x': new_x, 'y': new_y});
 }

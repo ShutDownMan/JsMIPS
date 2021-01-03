@@ -2,6 +2,7 @@ class Registers {
 
     constructor(component = '') {
         this.component = component;
+        this.registersMemOffsets = [0, 0, 0, 0]; // x, y, dx, dy
 
         this.readRegister1Bus = undefined;
         this.readRegister2Bus = undefined;
@@ -21,11 +22,34 @@ class Registers {
         this.readData2Bus = new Bus(component, 'readdata2');
     }
 
+    initialize(readRegister1Bus,
+        readRegister2Bus,
+        writeRegisterBus,
+        writeDataBus,
+        writeControlBus,
+        readRegister1BusMask = ALL_SET,
+        readRegister2BusMask = ALL_SET) {
+
+        this.readRegister1Bus = readRegister1Bus;
+        this.readRegister2Bus = readRegister2Bus;
+        this.writeRegisterBus = writeRegisterBus;
+        this.writeDataBus = writeDataBus;
+        this.writeControlBus = writeControlBus;
+        this.readRegister1BusMask = readRegister1BusMask;
+        this.readRegister2BusMask = readRegister2BusMask;
+
+        this.registersMemOffsets = getRegistersOffsets(this.component);
+        console.log(this.registersMemOffsets);
+    }
+
     draw() {
         setLabelText(this.component, 'readaddr_1_label', getHexValue(this.readRegister1Bus.getValue(), this.readRegister1BusMask));
         setLabelText(this.component, 'readaddr_2_label', getHexValue(this.readRegister2Bus.getValue(), this.readRegister2BusMask));
 
         this.drawMemory();
+
+        setRegisterSelectorPosition(this.component, 'readdata1_selector', this.registersMemOffsets, this.readRegister1Value);
+        setRegisterSelectorPosition(this.component, 'readdata2_selector', this.registersMemOffsets, this.readRegister2Value);
 
         this.readData1Bus.draw('#ffffff', '#00ff00');
         this.readData2Bus.draw('#ffffff', '#00ff00');
@@ -78,23 +102,6 @@ class Registers {
             this.memory[this.readRegister1Value]);
         this.readData2Bus.setValue(
             this.memory[this.readRegister2Value]);
-    }
-
-    initialize(readRegister1Bus,
-        readRegister2Bus,
-        writeRegisterBus,
-        writeDataBus,
-        writeControlBus,
-        readRegister1BusMask = ALL_SET,
-        readRegister2BusMask = ALL_SET) {
-
-        this.readRegister1Bus = readRegister1Bus;
-        this.readRegister2Bus = readRegister2Bus;
-        this.writeRegisterBus = writeRegisterBus;
-        this.writeDataBus = writeDataBus;
-        this.writeControlBus = writeControlBus;
-        this.readRegister1BusMask = readRegister1BusMask;
-        this.readRegister2BusMask = readRegister2BusMask;
     }
 
     getReadData1Bus() {
