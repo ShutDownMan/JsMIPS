@@ -237,12 +237,41 @@ function getRegistersOffsets(component) {
 function setRegisterSelectorPosition(component, part_label, offsets, value) {
     let selectorElem = s.select(`*[data-component=${component}][data-part_label=${part_label}]`);
 
-    let new_x = offsets[0] + parseInt(value%2) * offsets[2];
-    let new_y = offsets[1] + parseInt(value/2) * offsets[3];
+    let new_x = offsets[0] + parseInt(value % 2) * offsets[2];
+    let new_y = offsets[1] + parseInt(value / 2) * offsets[3];
 
     // console.log(value);
     // console.log({'x': offsets[0], 'y': offsets[1]});
     // console.log({'x': new_x, 'y': new_y});
 
-    selectorElem.attr({'x': new_x, 'y': new_y});
+    selectorElem.attr({ 'x': new_x, 'y': new_y });
+}
+
+function drawInstructionMemoryArea(component, part_label, memory) {
+    let memoryAreaElem = s.select(`*[data-component=${component}][data-part_label=${part_label}]`);
+    let memoryAreaBBox = memoryAreaElem.getBBox();
+
+    memoryAreaElem.attr({ "fill": "#fff0" });
+
+    let code = ``
+
+    let insertedObject = `<textarea id="instruction_code_area" class="mipsasm memory_text" contenteditable="false" spellcheck="false" style="
+    overflow-y: scroll;
+    resize: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    font-family: 'DejaVu Sans Mono', monospace;
+    font-size: 5px;" >${code}</textarea>`;
+    let fobjectSVG = `<foreignObject id="foreignMemory" width="${memoryAreaBBox.width}" height="${memoryAreaBBox.height}" x="${memoryAreaBBox.x}" y="${memoryAreaBBox.y}">${insertedObject}</foreignObject>`;
+
+    let p = Snap.parse(fobjectSVG);
+
+    let g = memoryAreaElem.after(p);
+
+    document.querySelectorAll('#instruction_code_area').forEach(block => {
+        // hljs.highlightBlock(block);
+        console.log(block)
+    });
 }

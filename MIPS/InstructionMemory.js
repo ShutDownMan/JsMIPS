@@ -15,11 +15,14 @@ class InstructionMemory {
 	initialize(memory, readAddressBus) {
 		this.memory = memory;
 		this.readAddressBus = readAddressBus;
+
+		drawInstructionMemoryArea(this.component, 'memory_area', this.memory);
 	}
 
 	draw() {
 		setLabelText(this.component, 'readaddr_label', getHexValue(this.readAddressValue));
 		setLabelText(this.component, 'inst_label', getHexValue(this.memory[this.readAddressValue / 4]));
+
 
 		this.instructionBus.draw('#ffffff', '#00ff00');
 	}

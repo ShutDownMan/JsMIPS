@@ -15,16 +15,25 @@ const mips = new MIPS();
 var s = Snap("#main_canvas");
 Snap.load("SVG_monocycle.svg", function (loadedFragment) {
     s.append(loadedFragment);
-    // mainCanvas.onmousedown = function (e) {
-    //     if (e.button !== 1) e.stopImmediatePropagation();
-    // }
-
+    var leftMouseDown = false;
+    mainCanvas.onmousedown = function (e) {
+        if (e.button !== 1) e.stopImmediatePropagation();
+        if (e.button === 0) leftMouseDown = true;
+    }
+    mainCanvas.onmouseup = function (e) {
+        if (e.button === 0) leftMouseDown = false;
+    }
+    hljs.initHighlightingOnLoad();
     var panZoomTiger = svgPanZoom(mainCanvas, {
         zoomEnabled: true,
         controlIconsEnabled: true,
         contain: true,
         center: true,
         minZoom: 0.9
+        // beforePan: (oldPan, newPan) => {
+        //     if (leftMouseDown) return false;
+        //     return true;
+        // }
     });
     process_svg_labels();
 

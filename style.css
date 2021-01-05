@@ -1,0 +1,18 @@
+.memory_text::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: #008b7eff;
+  text-align: left;
+  font-family: 'DejaVu Sans Mono', monospace;
+}
+
+.memory_text::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    box-shadow: inset;
+    -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+    background-color: #00ac97ff;
+}
+
+.memory_text::-webkit-scrollbar-corner {
+    background-color: #008b7eff;
+}

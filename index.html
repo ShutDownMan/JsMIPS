@@ -2,6 +2,8 @@
 <html>
 
 <head>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="styles/atom-one-light.css">
 	<title>MIPS in JS</title>
 </head>
 
@@ -20,7 +22,8 @@
 		<div><button id="clock_button" onclick="edgeTrigger()">CLOCK</button></div>
 	</div>
 
-	<div><textarea id="instruction_area">
+	<div><textarea id="instruction_area" class="text"
+			style="outline: none; width: 500; height: 300; box-sizing: border-box; font-size: 12px">
 00111100000100000000000000000001
 00111100000100010000000000000000
 00111100000100100000000000000011
@@ -32,9 +35,10 @@
 00000010010100011000100000100000
 </textarea></div>
 
-<br>
+	<br>
 
 	<script src="svg-pan-zoom.min.js"></script>
+	<script src="highlight.pack.js"></script>
 	<script src="snap.svg-min.js"></script>
 	<script src="MIPS/drawFunctions.js"></script>
 	<script src="MIPS/Bus.js"></script>
