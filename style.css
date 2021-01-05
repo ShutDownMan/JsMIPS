@@ -16,3 +16,9 @@
 .memory_text::-webkit-scrollbar-corner {
     background-color: #008b7eff;
 }
+
+@keyframes drawline {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

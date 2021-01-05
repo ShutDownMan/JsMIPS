@@ -2896,11 +2896,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.1767767"
-     inkscape:cx="1404.6882"
-     inkscape:cy="905.91072"
+     inkscape:zoom="0.50000001"
+     inkscape:cx="883.64661"
+     inkscape:cy="473.67057"
      inkscape:document-units="px"
-     inkscape:current-layer="layer20"
+     inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="true"
      units="px"
@@ -2935,7 +2935,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -2944,16 +2944,7 @@
      id="layer1"
      inkscape:groupmode="layer"
      style="display:inline"
-     transform="translate(-23.979489,-13.306251)">
-    <rect
-       style="fill:none;stroke:#95ffff;stroke-width:0.904912;stroke-linecap:square;stroke-linejoin:bevel;stop-color:#000000"
-       id="rect9913"
-       width="527.883"
-       height="282.48981"
-       x="24.431946"
-       y="13.758706"
-       ry="0.41703004" />
-  </g>
+     transform="translate(-23.979489,-13.306251)" />
   <g
      inkscape:groupmode="layer"
      id="layer20"
@@ -3311,7 +3302,7 @@
        inkscape:flatsided="true"
        inkscape:rounded="0"
        inkscape:randomized="0"
-       d="m 388.31386,115.11364 -1.89585,1.09457 v -2.18913 z"
+       d="m 388.31386,115.11364 -1.89585,1.09457 v -2.18914 z"
        inkscape:transform-center-x="-0.31594935"
        inkscape:label="registers-readdata1-#3-end"
        inkscape:transform-center-y="1.2614356e-05" />
@@ -3507,7 +3498,7 @@
        inkscape:flatsided="true"
        inkscape:rounded="0"
        inkscape:randomized="0"
-       d="m 244.61156,115.11364 -1.89584,1.09457 v -2.18913 z"
+       d="m 244.61156,115.11364 -1.89585,1.09457 v -2.18914 z"
        inkscape:transform-center-x="-0.31599128"
        inkscape:label="instmem-out-#5-end"
        data-bus_mask="0xFC000000"
@@ -3708,7 +3699,7 @@
        inkscape:flatsided="true"
        inkscape:rounded="0"
        inkscape:randomized="0"
-       d="m 379.17839,198.6442 -1.89585,1.09457 v -2.18914 z"
+       d="m 379.17839,198.6442 -1.89585,1.09456 v -2.18913 z"
        inkscape:transform-center-x="-0.31595632"
        inkscape:label="registers-readdata2-#3-end"
        inkscape:transform-center-y="9.7142442e-06" />

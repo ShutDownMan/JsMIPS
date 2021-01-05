@@ -46,7 +46,7 @@ function lightupBusLabel(component, value, bus_label = '*', default_color = '#00
     // let lightupInterval = setInterval(() => {
     //     if (lightupSequence(component, value, bus_label, String(i++), default_color, highlight_color).length == 0)
     //         clearInterval(lightupInterval);
-    // }, 10);
+    // }, 1000);
 }
 
 function lightupSequence(component, value, bus_label = '*', seq_order = '*', default_color = '#000000', highlight_color = '#ffffff') {
@@ -60,17 +60,30 @@ function lightupSequence(component, value, bus_label = '*', seq_order = '*', def
     foundElems.forEach(function (elem) {
         let color = (parseInt(getBusHexValue(elem, value)) === 0) ? default_color : highlight_color;
 
-        if (elem.type == "path") {
+        if (elem.type === "path") {
             if (elem.attr('data-type') == 'end') {
                 elem.node.style.fill = color;
             } else {
+                if (color === highlight_color) {
+                    elem.node.style.strokeDasharray = elem.getTotalLength();
+                    elem.node.style.strokeDashoffset = elem.getTotalLength();
+                    elem.node.style.animation = "drawline 1s linear forwards";
+                    elem.node.style.webkitAnimationPlayState = "running";
+                    elem.node.addEventListener('animationend', () => {
+                        elem.node.style.strokeDasharray = 0;
+                        elem.node.style.strokeDashoffset = 0;
+                        elem.node.style.animation = "";
+                    });
+                } else {
+                    // elem.node.style.webkitAnimationPlayState = "paused";
+                }
                 elem.node.style.stroke = color;
             }
         }
-        if (elem.type == "rect") {
+        if (elem.type === "rect") {
             elem.node.style.fill = color;
         }
-        if (elem.type == "text") {
+        if (elem.type === "text") {
             elem.children().forEach(function (child) {
                 elem.node.style.fill = color;
             });
@@ -253,9 +266,17 @@ function drawInstructionMemoryArea(component, part_label, memory) {
 
     memoryAreaElem.attr({ "fill": "#fff0" });
 
-    let code = ``
+    let code = `li $16, 1<br>
+li $17, 0<br>
+li $18, 3<br>
+add $17,$17,$16<br>
+bne $18,$17, -2<br>
+jump 8<br>
+add $17,$16,$17<br>
+sub $11,$16,$16<br>
+add $17,$18,$17`
 
-    let insertedObject = `<textarea id="instruction_code_area" class="mipsasm memory_text" contenteditable="false" spellcheck="false" style="
+    let insertedObject = `<code id="instruction_code_area" class="mipsasm memory_text" align="left" contenteditable="false" spellcheck="false" style="
     overflow-y: scroll;
     resize: none;
     outline: none;
@@ -263,7 +284,7 @@ function drawInstructionMemoryArea(component, part_label, memory) {
     height: 100%;
     box-sizing: border-box;
     font-family: 'DejaVu Sans Mono', monospace;
-    font-size: 5px;" >${code}</textarea>`;
+    font-size: 5px;" >${code}</code>`;
     let fobjectSVG = `<foreignObject id="foreignMemory" width="${memoryAreaBBox.width}" height="${memoryAreaBBox.height}" x="${memoryAreaBBox.x}" y="${memoryAreaBBox.y}">${insertedObject}</foreignObject>`;
 
     let p = Snap.parse(fobjectSVG);
@@ -271,7 +292,7 @@ function drawInstructionMemoryArea(component, part_label, memory) {
     let g = memoryAreaElem.after(p);
 
     document.querySelectorAll('#instruction_code_area').forEach(block => {
-        // hljs.highlightBlock(block);
+        hljs.highlightBlock(block);
         console.log(block)
     });
 }
