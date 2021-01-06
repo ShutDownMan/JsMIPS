@@ -266,17 +266,28 @@ function drawInstructionMemoryArea(component, part_label, memory) {
 
     memoryAreaElem.attr({ "fill": "#fff0" });
 
-    let code = `li $16, 1<br>
-li $17, 0<br>
-li $18, 3<br>
-add $17,$17,$16<br>
-bne $18,$17, -2<br>
-jump 8<br>
-add $17,$16,$17<br>
-sub $11,$16,$16<br>
-add $17,$18,$17`
+    let code = `
+        START:<br>
+        LUI  $1, 1 ; $1 = 1<br>
+        LUI  $2, 1 ; $2 = 1<br>
+        ADD $3, $2, $1<br>
+        AND $2, 0<br>
+        ADD $2, $1<br>
+        AND $1, 0<br>
+        ADD $1, $3<br>
+        JMP   START<br>
+        ; lui $16, 1<br>
+        ; lui $17, 0<br>
+        ; lui $18, 3<br>
+        ; add $17,$17,$16<br>
+        ; bne $18,$17, -2<br>
+        ; jump 8<br>
+        ; add $17,$16,$17<br>
+        ; sub $11,$16,$16<br>
+        ; add $17,$18,$17<br>
+    `
 
-    let insertedObject = `<code id="instruction_code_area" class="mipsasm memory_text" align="left" contenteditable="false" spellcheck="false" style="
+    let insertedObject = `<code id="instruction_code_area" contenteditable="true" class="mipsasm memory_text" align="left" contenteditable="false" spellcheck="false" style="
     overflow-y: scroll;
     resize: none;
     outline: none;
@@ -292,6 +303,7 @@ add $17,$18,$17`
     let g = memoryAreaElem.after(p);
 
     document.querySelectorAll('#instruction_code_area').forEach(block => {
+        // block.addEventListener('input', () => {hljs.highlightBlock(block);})
         hljs.highlightBlock(block);
         console.log(block)
     });

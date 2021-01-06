@@ -102,10 +102,6 @@ class MIPS {
 
         console.log("Initializing Component: Shift Left 2");
         this.shiftLeft2.initialize(this.branchSrcMux.getOutBus());
-        10
-        10
-        10
-        10
         this.adder_2.initialize(this.shiftLeft2.getOutBus(),
             this.adder_1.getOutBus());
 
