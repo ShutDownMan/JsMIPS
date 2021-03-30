@@ -41,6 +41,7 @@ function getHexValue(value, mask = ALL_SET) {
 
 function lightupBusLabel(component, value, bus_label = '*', default_color = '#000000', highlight_color = '#ffffff') {
     let i = 1;
+    // lightupSequence(component, value, bus_label, '1', default_color, highlight_color);
     while (lightupSequence(component, value, bus_label, String(i++), default_color, highlight_color).length != 0)
         ;
     // let lightupInterval = setInterval(() => {
@@ -67,12 +68,13 @@ function lightupSequence(component, value, bus_label = '*', seq_order = '*', def
                 if (color === highlight_color) {
                     elem.node.style.strokeDasharray = elem.getTotalLength();
                     elem.node.style.strokeDashoffset = elem.getTotalLength();
-                    elem.node.style.animation = "drawline 1s linear forwards";
+                    elem.node.style.animation = `drawline 0.5s linear forwards`;
                     elem.node.style.webkitAnimationPlayState = "running";
                     elem.node.addEventListener('animationend', () => {
                         elem.node.style.strokeDasharray = 0;
                         elem.node.style.strokeDashoffset = 0;
                         elem.node.style.animation = "";
+                        // lightupSequence(component, value, bus_label, parseInt(seq_order) + 1, default_color, highlight_color);
                     });
                 } else {
                     // elem.node.style.webkitAnimationPlayState = "paused";
@@ -267,15 +269,15 @@ function drawInstructionMemoryArea(component, part_label, memory) {
     memoryAreaElem.attr({ "fill": "#fff0" });
 
     let code = `
-        START:<br>
         LUI  $1, 1 ; $1 = 1<br>
         LUI  $2, 1 ; $2 = 1<br>
+        START:<br>
         ADD $3, $2, $1<br>
-        AND $2, 0<br>
-        ADD $2, $1<br>
-        AND $1, 0<br>
-        ADD $1, $3<br>
-        JMP   START<br>
+        AND $2, 0 ; $2 = 0<br>
+        ADD $2, $2, $1<br>
+        AND $1, 0 ; $1 = 0<br>
+        ADD $1, $1, $3<br>
+        J   START<br>
         ; lui $16, 1<br>
         ; lui $17, 0<br>
         ; lui $18, 3<br>
